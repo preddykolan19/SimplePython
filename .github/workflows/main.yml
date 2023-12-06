@@ -20,7 +20,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Static Code Analysis with SonarQube
-      uses: SonarSource/sonarcloud-github-action@master
+      uses: sonarsource/sonarcloud-github-action@master
       env:
          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Provided by GitHub
          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Set in your repository secrets
