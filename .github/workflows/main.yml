@@ -27,8 +27,7 @@ jobs:
       with:
         args: >
              -Dsonar.organization=preddykolan19
-             -Dsonar.projectKey=SonarCloudCodeAnalysis
-             -Dsonar.python.coverage.reportPaths=coverage.xml
+             -Dsonar.projectKey=SimplePython
 
     - name: Build and Test Python
       env:
