@@ -20,6 +20,9 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Build and Test Python
+      env:
+        NUM1: '1.5'
+        NUM2: '2.5'
       run: |
         python Simple.py install
         python -m unittest discover
