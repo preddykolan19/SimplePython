@@ -12,9 +12,19 @@ jobs:
 
     - name: Set up Python/R environment
       # Add steps to set up Python or R environment
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
 
     - name: Build R/Python artifact
       # Add steps for building your R or Python project
+    - name: Build and Test
+      run: |
+        python setup.py install
+        python -m unittest discover
 
     - name: Run CVE Scanning with Grype
       run: |
