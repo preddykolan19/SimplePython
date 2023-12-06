@@ -33,7 +33,7 @@ jobs:
     - name: Generate SBOM with Syft
       run: docker run --rm -v ${{github.workspace}}:/src anchore/syft /src -o json > sbom.json
 
-    - name: Static Code Analysis with SonarQube
+      #- name: Static Code Analysis with SonarQube
       # Add steps to integrate and run SonarQube
       # Include conditions to fail the build for high issue counts
 
