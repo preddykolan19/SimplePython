@@ -19,17 +19,6 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Static Code Analysis with SonarQube
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Provided by GitHub
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Set in your repository secrets
-      with:
-       args: >
-          -Dsonar.projectKey=SimplePython
-          -Dsonar.organization=preddykolan19
-
-
     - name: Build and Test Python
       env:
         NUM1: '1.5'
@@ -48,7 +37,16 @@ jobs:
 
     - name: Generate SBOM with Syft
       run: docker run --rm -v ${{github.workspace}}:/src anchore/syft /src -o json > sbom.json
-
+      
+    - name: Static Code Analysis with SonarQube
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Provided by GitHub
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Set in your repository secrets
+      with:
+       args: >
+          -Dsonar.projectKey=SimplePython
+          -Dsonar.organization=preddykolan19
     - name: Upload SBOM
       uses: actions/upload-artifact@v2
       with:
