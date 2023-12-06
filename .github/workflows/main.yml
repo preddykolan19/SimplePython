@@ -10,7 +10,7 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    - name: Set up Python/R environment
+    - name: Setting up Python Env
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
@@ -19,11 +19,11 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Static Code Analysis with SonarQube
+    - name: Static code Analysis using Sonar Cloud scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
-         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Provided by GitHub
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Set in your repository secrets
+         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
        args: >
           -Dsonar.projectKey=SimplePython
