@@ -17,10 +17,7 @@ jobs:
     - name: Install dependencies
       run: pip3 install -r requirements.txt
 
-
-    - name: Build R/Python artifact
-      # Add steps for building your R or Python project
-    - name: Build and Test
+    - name: Build and Test Python
       run: |
         python setup.py install
         python -m unittest discover
