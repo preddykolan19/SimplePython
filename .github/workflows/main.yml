@@ -1,0 +1,35 @@
+name: Build and Security Scan
+
+on: [push, pull_request]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python/R environment
+      # Add steps to set up Python or R environment
+
+    - name: Build R/Python artifact
+      # Add steps for building your R or Python project
+
+    - name: Run CVE Scanning with Grype
+      run: |
+        docker run --rm -v ${{github.workspace}}:/src anchore/grype /src
+        # Add steps to fail if critical vulnerabilities are found
+
+    - name: Generate SBOM with Syft
+      run: docker run --rm -v ${{github.workspace}}:/src anchore/syft /src -o json > sbom.json
+
+    - name: Static Code Analysis with SonarQube
+      # Add steps to integrate and run SonarQube
+      # Include conditions to fail the build for high issue counts
+
+    - name: Upload SBOM
+      uses: actions/upload-artifact@v2
+      with:
+        name: sbom
+        path: sbom.json
