@@ -1,5 +1,4 @@
-aiokafka==0.8.0
-ansible==7.2.0
+aiokafka==0.8.
 ansible-core==2.14.2
 argcomplete==2.0.0
 async-timeout==4.0.2
