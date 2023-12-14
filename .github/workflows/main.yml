@@ -10,32 +10,48 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    - name: Setting up Python Env
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-    - name: Update pip
-      run: pip install --upgrade pip
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+#    - name: Setting up Python Env
+ #     uses: actions/setup-python@v2
+ #     with:
+  #      python-version: '3.8'
+ #   - name: Update pip
+  #    run: pip install --upgrade pip
+   # - name: Install dependencies
+    #  run: pip install -r requirements.txt
 
-    - name: Static code Analysis using Sonar Cloud scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      with:
-       args: >
-          -Dsonar.projectKey=SimplePython
-          -Dsonar.organization=preddyk19
+   # - name: Static code Analysis using Sonar Cloud scan
+   #   uses: sonarsource/sonarcloud-github-action@master
+   #   env:
+   #      GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+   #      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+   #   with:
+   #    args: >
+   #       -Dsonar.projectKey=SimplePython
+   #       -Dsonar.organization=preddyk19
 
-    - name: Build and Test Python
-      env:
-        NUM1: '1.5'
-        NUM2: '2.5'
+  #  - name: Build and Test Python
+   #   env:
+    #    NUM1: '1.5'
+    #    NUM2: '2.5'
+    #  run: |
+     #   python Simple.py install
+      #  python -m unittest discover
+
+    - name: Set up R
+      uses: r-lib/actions/setup-r@v1
+      with:
+        r-version: 4.1  # Specify your desired R version
+
+    - name: Install Dependencies
       run: |
-        python Simple.py install
-        python -m unittest discover
+        Rscript -e "install.packages('tidyverse')"
+        Rscript -e "install.packages('shiny')"
+        Rscript -e "install.packages('targets')"
+        # Add more package installations as needed
+
+    - name: Run R Script
+      run: |
+        Rscript obesity_linear.R  # Replace with the name of your R script
 
     - name: Run CVE Scanning with Grype
       run: |
