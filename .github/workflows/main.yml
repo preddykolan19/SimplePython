@@ -51,7 +51,7 @@ jobs:
 
     - name: Run R Script
       run: |
-        Rscript obesity_linear.R  # Replace with the name of your R script
+        Rscript r-lang-morib-model/obesity_linear.R  # Replace with the name of your R script
 
     - name: Run CVE Scanning with Grype
       run: |
