@@ -1,5 +1,5 @@
 # Install and load required packages
-install.packages(c("shiny", "tidyverse", "targets"))
+install.packages(c("tidyverse"))
 
 library(shiny)
 library(tidyverse)
