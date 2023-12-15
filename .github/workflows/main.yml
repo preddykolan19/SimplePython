@@ -51,11 +51,11 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        Rscript -e "install.packages('tidyverse')"
+        Rscript -e "install.packages('textshaping')"
         Rscript -e "install.packages('curl')"
-        Rscript -e "install.packages('shiny')"
-        Rscript -e "install.packages('targets')"
-        Rscript -e "install.packages('textshaping')"  
+      #  Rscript -e "install.packages('shiny')"
+       # Rscript -e "install.packages('targets')"
+       # Rscript -e "install.packages('textshaping')"  
         # Add more package installations as needed
 
     - name: Run R Script
