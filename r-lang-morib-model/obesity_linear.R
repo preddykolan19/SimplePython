@@ -6,6 +6,8 @@ library(shiny)
 library(tidyverse)
 library(targets)
 library(futile.logger)
+library(conflicted)conflict_prefer("filter", "dplyr")
+
 
 # Define the data preprocessing plan using targets
 tar_plan <- tar_script({
