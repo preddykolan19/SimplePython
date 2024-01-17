@@ -59,7 +59,12 @@ jobs:
         Rscript -e "install.packages('tidyverse')"
         Rscript -e "install.packages('conflicted')"
         # Add more package installations as needed
-
+        
+    - name: Install lintr
+      run: install.packages("lintr")
+    - name: Run lintr
+      run: Rscript -e 'lintr::lint_package()'
+      
     - name: Run R Script
       run: |
         Rscript matrix.R 
