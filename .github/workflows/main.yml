@@ -53,15 +53,16 @@ jobs:
       run: |
         Rscript -e "install.packages('textshaping')"
         Rscript -e "install.packages('curl')"
-        Rscript -e "install.packages('shiny')"
         Rscript -e "install.packages('targets')"
         Rscript -e "install.packages('futile.logger')" 
-        Rscript -e "install.packages('tidyverse')"
         Rscript -e "install.packages('conflicted')"
         # Add more package installations as needed
+        # Rscript -e "install.packages('shiny')"
+        # Rscript -e "install.packages('tidyverse')"
         
     - name: Install lintr
-      run: install.packages("lintr")
+      run: Rscript -e "install.packages('lintr')"
+       
     - name: Run lintr
       run: Rscript -e 'lintr::lint_package()'
       
